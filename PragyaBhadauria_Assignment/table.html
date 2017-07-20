@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel = "stylesheet" type = "text/css" href = "stylecss.css" />
+        
+    </head>
+    <body>
+        
+        <div class="container">
+        <div id="user_registration">
+
+               <p> <label>Full Name :</label><input type="text" name="fname" id="fname"></p>
+               <p> <label>UserName :</label><input type="text" name="uname" id="uname"><span> *</span> </p>
+		
+               <p><label> Email:</label><input type="text" name="email" id="email" onkeyup="email_validate(this.value);"> 
+		<span id="status">*<span><br></p>
+               <p> <label>Password</label><input type="password" name="pass" id="pass" onkeyup="passwordStrength(this.value)"><span> *</span>  			</p>
+		<p><label for="passwordStrength">Password strength</label>
+		<div id="passwordDescription">Password not entered</div>
+		<div id="passwordStrength" class="strength0"></div></p><br>
+		<p> <button id="submit" onclick="addHtmlTableRow();">Submit</button></p>
+		<p><button type="button" onclick="ClearFields();">Clear</button></p>
+		</div><br><br>
+		<table    id="table"  >
+		<tr>
+			<th>FirstName</th>
+    			<th>LastName</th>
+			<th>Email</th>
+		</tr>
+		</table>
+		</div>
+<script>
+var rIndex,
+table = document.getElementById("table");
+function checkEmptyInput()
+{
+     var isEmpty = false,
+     fname = document.getElementById("fname").value,
+     uname = document.getElementById("uname").value,
+     email = document.getElementById("email").value;
+     password=document.getElementById("pass").value;
+     if(uname === ""){
+     alert("User Name Connot Be Empty");
+      isEmpty = true;
+      }
+                 
+     else if(email === ""){
+     alert("email Connot Be Empty");
+     isEmpty = true;
+     }
+
+    else if(password === ""){
+    alert("Password Connot Be Empty");
+    isEmpty = true;
+    }
+    return isEmpty;
+}
+ 
+function validateForm() {
+    var x = document.getElementById("email").value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+	return true;
+}
+ 
+function addHtmlTableRow()
+{
+	if(!checkEmptyInput() && validateForm() ){
+        var newRow = table.insertRow(table.length),
+        cell1 = newRow.insertCell(0),
+        cell2 = newRow.insertCell(1),
+        cell3 = newRow.insertCell(2),
+        fname = document.getElementById("fname").value,
+        uname = document.getElementById("uname").value,
+        email = document.getElementById("email").value;
+            
+        cell1.innerHTML = fname;
+        cell2.innerHTML = uname;
+        cell3.innerHTML = email;
+	}
+}
+            
+function selectedRowToInput()
+{
+for(var i = 1; i < table.rows.length; i++)
+	{
+         	table.rows[i].onclick = function()
+                 {
+                      rIndex = this.rowIndex;
+                      document.getElementById("fname").value = this.cells[0].innerHTML;
+                      document.getElementById("uname").value = this.cells[1].innerHTML;
+                      document.getElementById("email").value = this.cells[2].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+         
+
+function email_validate(email)
+{
+	 
+	var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+	if(regMail.test(email) == false)
+	{
+		document.getElementById("status").innerHTML	= "Email address is not valid yet.";
+		 
+	}
+	else
+	{
+		document.getElementById("status").innerHTML	= "You have entered a valid Email address!";	
+ 
+	}
+	//return valid;
+}   
+        
+
+function passwordStrength(password)
+{
+	var desc = new Array();
+	desc[0] = "Very Weak";
+	desc[1] = "Weak";
+	desc[2] = "Better";
+	desc[3] = "Medium";
+	desc[4] = "Strong";
+	desc[5] = "Strongest";
+
+	var score   = 0;
+	if (password.length > 6) score++;
+	if ( ( password.match(/[a-z]/) ) && ( password.match(/[A-Z]/) ) ) score++;
+	if (password.match(/\d+/)) score++;
+	if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) )	score++;
+	if (password.length > 12) score++;
+
+	 document.getElementById("passwordDescription").innerHTML = desc[score];
+	 document.getElementById("passwordStrength").className = "strength" + score;
+}
+function ClearFields() {
+
+     document.getElementById("fname").value = "";
+     document.getElementById("uname").value = "";
+	 document.getElementById("email").value = "";
+	 document.getElementById("pass").value = "";
+	
+}
+</script>
+</body>
+</html>

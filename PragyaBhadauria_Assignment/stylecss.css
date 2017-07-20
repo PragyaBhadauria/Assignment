@@ -1,0 +1,97 @@
+<style>
+.container{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 50px}
+            .tab-2 input{display: block;margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+span {
+color: #000099;
+font: 8pt verdana;
+font-weight:bold; 
+text-decoration:none;
+font-size:15px;
+}
+
+#user_registration
+{
+	border:1px solid #cccccc;
+	margin:auto auto;
+	margin-top:100px;
+	width:400px;
+}
+
+
+#user_registration label
+{
+        display: block;  /* block float the labels to left column, set a width */
+	float: left; 
+	width: 70px;
+	margin: 0px 10px 0px 5px; 
+	text-align: right; 
+	line-height:1em;
+	font-weight:bold;
+}
+#user_registration p
+{
+	clear:both;
+}
+
+
+#passwordStrength
+{
+	height:10px;
+	display:block;
+	float:left;
+}
+
+.strength0
+{
+	width:250px;
+	background:#cccccc;
+}
+
+.strength1
+{
+	width:50px;
+	background:#ff0000;
+}
+
+.strength2
+{
+	width:100px;	
+	background:#ff5f5f;
+}
+
+.strength3
+{
+	width:150px;
+	background:#56e500;
+}
+
+.strength4
+{
+	background:#4dcd00;
+	width:200px;
+}
+
+.strength5
+{
+	background:#399800;
+	width:250px;
+}
+
+table, td, th {
+    border: 1px solid black;
+    margin-left:130px; 
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th {
+    height: 25px;
+}
+</style>
